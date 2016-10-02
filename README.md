@@ -1,4 +1,4 @@
-# Strawpoll :ballot_box_with_ballot:
+# Strawpoll :busts_in_silhouette:
 
 A quick and easy way to create strawpolls.
 
