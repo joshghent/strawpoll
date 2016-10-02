@@ -1,0 +1,11 @@
+{
+  "name": "strawpoll",
+  "version": "1.0.0",
+  "description": "Strawpoll builder",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Josh Ghent",
+  "license": "MIT"
+}
