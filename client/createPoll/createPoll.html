@@ -4,10 +4,23 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-    
+        <div class="container">
+            <form>
+                <div class="row">
+                    <div class="eleven columns">
+                        <input class="u-full-width" type="text" placeholder="What do you want to ask the world?" id="questionText" />
+                        <input class="u-full-width" type="text" placeholder="Enter the first option" />
+                        <input class="u-full-width" type="text" placeholder="Enter the second option" />
+                        <input class="u-full-width" type="text" placeholder="Enter the third option" />
+                    </div>
+                </div>
+                <input class="button-primary" type="submit" value="Create Poll" />
+            </form>
+        </div>
     </body>
     <script type="text/javascript" language="Javascript" src="createPoll.js"></script>
 </html>

@@ -6,7 +6,7 @@ const app = express();
 
 const http = require('http').Server(app);
 const path = require('path');
-const api = require('/api.js');
+const api = require('./api');
 
 app.use(express.static(path.join(__dirname, 'client')));
 
