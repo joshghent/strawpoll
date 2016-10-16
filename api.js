@@ -1,4 +1,5 @@
 const mongo = require('mongodb').MongoClient;
+const shortid = require('shortid');
 
 let polls;
 
@@ -29,5 +30,20 @@ module.exports = (app) => {
   });
 
   app.post('/save', (req, res) => {
+    const pollId = shortid.generate();
+
+    polls.findOne({ poll: pollId }, (err, data) => {
+      if (!data) {
+        polls.insert({
+          poll: pollId,
+          votes: 0,
+          allowMultiVote: 'n',
+          questionText: req.body.questionText,
+          optionOne: req.body.optionOne,
+          optionTwo: req.body.optionTwo,
+          optionThree: req.body.optionThree,
+        });
+      }
+    });
   });
 };
