@@ -13,17 +13,15 @@ module.exports = (app) => {
     const requestedPoll = req.url.split('/').pop();
 
     if (requestedPoll) {
-
       // Find the poll at the requested url in the database
       polls.findOne({ poll: requestedPoll }, (err, data) => {
-
         // If we find the poll then post back the json data for it
         if (data) {
           res.json(data);
-   
+
         // Otherwise we output that we couldn't find a poll
         } else {
-          res.json({ message: "No poll found" });
+          res.json({ message: 'No poll found' });
         }
       });
     }
@@ -42,8 +40,14 @@ module.exports = (app) => {
           optionOne: req.body.optionOne,
           optionTwo: req.body.optionTwo,
           optionThree: req.body.optionThree,
+        }, () => {
+          console.log(`Created poll with ID of ${pollId}`);
         });
       }
+    });
+
+    res.json({
+      poll: pollId,
     });
   });
 };
