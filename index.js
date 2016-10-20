@@ -63,7 +63,7 @@ app.post('/save', (req, res) => {
         optionThree: req.body.optionThree,
       }, () => {
         console.log(`Created poll with ID of ${pollId}`);
-        res.redirect(`${pollId}`);
+        res.json({ poll: pollId });
       });
     }
   });
