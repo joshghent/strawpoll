@@ -7,7 +7,6 @@ const app = express();
 
 const http = require('http').Server(app);
 const path = require('path');
-const api = require('./api');
 const mongo = require('mongodb').MongoClient;
 const shortid = require('shortid');
 
@@ -23,8 +22,6 @@ app.get('/', (req, res) => {
 app.get(/^\/[A-Za-z0-9]+$/, (req, res) => {
   res.sendFile(path.join(__dirname, '/client/viewPoll/viewPoll.html'));
 });
-
-// api(app);
 
 mongo.connect(String(process.env.MONGOHQ_URL), (err, db) => {
   polls = db.collection('strawpoll');
