@@ -9,8 +9,10 @@ module.exports = (app) => {
   });
 
   // Urls to polls will always be something like 'strawpoll.joshghent.com/poll/<RANDOM 8 CHAR STRING>'
-  app.get(/^\/poll\/\w+$/, (req, res) => {
+  app.get(/\/poll\/[a-zA-Z0-9]+\//, (req, res) => {
+    console.log(req.url);
     const requestedPoll = req.url.split('/').pop();
+    console.log(requestedPoll);
 
     if (requestedPoll) {
       // Find the poll at the requested url in the database
@@ -42,12 +44,9 @@ module.exports = (app) => {
           optionThree: req.body.optionThree,
         }, () => {
           console.log(`Created poll with ID of ${pollId}`);
+          res.redirect(`${pollId}`);
         });
       }
-    });
-
-    res.json({
-      poll: pollId,
     });
   });
 };

@@ -1,6 +1,10 @@
 const render = (data) => {
   const questionContainer = document.getElementById('question');
-  const optionsMarkup = `<ul><li><input type="checkbox" />${data.optionOne}</li>`;
+  const optionsMarkup = `<ul class="questionOptions">
+                          <li><input type="checkbox" /> ${data.optionOne}</li>
+                          <li><input type="checkbox" /> ${data.optionTwo}</li>
+                          <li><input type="checkbox" /> ${data.optionThree}</li>
+                        </ul>`;
   questionContainer.innerHTML = optionsMarkup;
 };
 
