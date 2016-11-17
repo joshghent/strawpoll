@@ -5,12 +5,14 @@ const bodyparser = require('body-parser');
 
 const app = express();
 
-const http = require('http').Server(app);
-const path = require('path');
-const mongo = require('mongodb').MongoClient;
-const shortid = require('shortid');
+const http = require('http');
 
-let polls;
+const server = http.Server(app);
+const routes = require('./routes.js');
+const path = require('path');
+const mongoose = require('mongoose');
+const shortid = require('shortid');
+const schema = require('./schema.js').pollSchema;
 
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, 'client')));
@@ -23,9 +25,13 @@ app.get(/^\/[A-Za-z0-9]+$/, (req, res) => {
   res.sendFile(path.join(__dirname, '/client/viewPoll/viewPoll.html'));
 });
 
+/*
 mongo.connect(String(process.env.MONGOHQ_URL), (err, db) => {
   polls = db.collection('strawpoll');
 });
+*/
+const db = mongoose.connect(String(process.env.MONGOHQ_URL));
+const Poll = db.model('strawpoll', schema);
 
 app.get(/^\/poll\/\w+$/, (req, res) => {
   const requestedPoll = req.url.split('/').pop();
@@ -45,14 +51,30 @@ app.get(/^\/poll\/\w+$/, (req, res) => {
   }
 });
 
-app.post('/save', (req, res) => {
+app.post('/save', (req, saveRes) => {
   const pollId = shortid.generate();
 
+  const pollObj = {
+    id: pollId,
+    question: req.body.questionText,
+    options: req.body.options,
+  };
+
+  const poll = new Poll(pollObj);
+
+  poll.save((err, res) => {
+    if (err || !res) {
+      console.log('Error whilst saving ') + pollId;
+      return;
+    }
+
+    res.join(res);
+  });
+  /*
   polls.findOne({ poll: pollId }, (err, data) => {
     if (!data) {
       polls.insert({
         poll: pollId,
-        votes: 0,
         allowMultiVote: 'n',
         questionText: req.body.questionText,
         optionOne: req.body.optionOne,
@@ -64,8 +86,18 @@ app.post('/save', (req, res) => {
       });
     }
   });
+  */
 });
 
-http.listen(port, () => {
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/404.html'));
+});
+
+server.listen(port, () => {
   console.log(`Listening on: ${port}`);
 });
+
+const io = require('socket.io').listen(server);
+
+io.sockets.on('connection', routes.vote);
+

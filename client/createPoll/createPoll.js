@@ -19,12 +19,16 @@
         }
       };
 
-      savePollRequest.send(JSON.stringify({
-        questionText,
-        optionOne,
-        optionTwo,
-        optionThree,
-      }));
+      savePollRequest.send(JSON.stringify(
+        {
+          question: questionText,
+          options: [
+            { text: optionOne },
+            { text: optionTwo },
+            { text: optionThree },
+          ],
+        }
+      ));
     }
   });
 })();
