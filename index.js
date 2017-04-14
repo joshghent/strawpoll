@@ -1,5 +1,7 @@
 const port = process.env.PORT || 5432;
 
+require('dotenv').config();
+
 const express = require('express');
 const bodyparser = require('body-parser');
 
@@ -11,8 +13,11 @@ const server = http.Server(app);
 const routes = require('./routes.js');
 const path = require('path');
 const mongoose = require('mongoose');
+const bugsnag = require('bugsnag');
 const shortid = require('shortid');
 const schema = require('./schema.js').pollSchema;
+
+bugsnag.register(process.env.BUGSNAG_API_KEY);
 
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, 'client')));
@@ -25,27 +30,22 @@ app.get(/^\/[A-Za-z0-9]+$/, (req, res) => {
   res.sendFile(path.join(__dirname, '/client/viewPoll/viewPoll.html'));
 });
 
-/*
-mongo.connect(String(process.env.MONGOHQ_URL), (err, db) => {
-  polls = db.collection('strawpoll');
-});
-*/
 const db = mongoose.connect(String(process.env.MONGOHQ_URL));
-const Poll = db.model('strawpoll', schema);
+const Poll = db.model('strawpolls', schema);
 
 app.get(/^\/poll\/\w+$/, (req, res) => {
   const requestedPoll = req.url.split('/').pop();
 
   if (requestedPoll) {
     // Find the poll at the requested url in the database
-    polls.findOne({ poll: requestedPoll }, (err, data) => {
+    Poll.findOne({ id: requestedPoll }, (err, data) => {
       // If we find the poll then post back the json data for it
       if (data) {
         res.json(data);
 
       // Otherwise we output that we couldn't find a poll
       } else {
-        res.json({ message: 'No poll found' });
+        res.sendFile(path.join(__dirname, 'client/404.html'));
       }
     });
   }
@@ -56,19 +56,18 @@ app.post('/save', (req, saveRes) => {
 
   const pollObj = {
     id: pollId,
-    question: req.body.questionText,
+    question: req.body.question,
     options: req.body.options,
   };
 
   const poll = new Poll(pollObj);
 
   poll.save((err, res) => {
-    if (err || !res) {
-      console.log('Error whilst saving ') + pollId;
-      return;
+    if (err) {
+      bugsnag.notify(new Error(`Error whilst saving ${pollId} - ${saveRes}`));
+    } else {
+      saveRes.json(res);
     }
-
-    res.join(res);
   });
   /*
   polls.findOne({ poll: pollId }, (err, data) => {

@@ -12,10 +12,10 @@
     if (questionText) {
       savePollRequest.open('POST', '/save', true);
       savePollRequest.setRequestHeader('Content-type', 'application/json');
-      savePollRequest.onload = (e) => {
+      savePollRequest.onload = () => {
         if (savePollRequest.status >= 200 && savePollRequest.status < 400) {
           res = JSON.parse(savePollRequest.response);
-          window.location.replace(window.location.href += res.poll);
+          window.location.replace(window.location.href + '/poll/' + res.id);
         }
       };
 
