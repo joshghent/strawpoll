@@ -69,23 +69,6 @@ app.post('/save', (req, saveRes) => {
       saveRes.json(res);
     }
   });
-  /*
-  polls.findOne({ poll: pollId }, (err, data) => {
-    if (!data) {
-      polls.insert({
-        poll: pollId,
-        allowMultiVote: 'n',
-        questionText: req.body.questionText,
-        optionOne: req.body.optionOne,
-        optionTwo: req.body.optionTwo,
-        optionThree: req.body.optionThree,
-      }, () => {
-        console.log(`Created poll with ID of ${pollId}`);
-        res.json({ poll: pollId });
-      });
-    }
-  });
-  */
 });
 
 app.get('*', (req, res) => {
