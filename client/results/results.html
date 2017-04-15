@@ -4,12 +4,26 @@
     <title>Strawpoll Results</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
     <link href="/results/results.css" rel="stylesheet">
   </head>
   <body>
+    <div class="row">
+        <h1 class="header u-pull-left">🗳 Strawpoll</h1>
+        <a href="/" class="button button-primary u-pull-right" style="margin-top: 10x;">Create a Poll</a>
+    </div>
     <div class="container">
-      <ul id="question">
-      </ul>
+      <div class="row">
+        <div class="nine columns">
+          <div class="offset-by-three columns">
+            <ul id="question">
+            </ul>
+            <div class="row results-container">
+              <b><span id="totalVotes"></span> Votes</b>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
   <script src="/socket.io/socket.io.js"></script>

@@ -6,18 +6,21 @@ const render = (data) => {
     return a + b.votes.length;
   }, 0);
 
-  markup += `<h1>${data.question} - Total Votes: <span id="totalVotes">${totalVotes}<span></h1>`;
+  markup += `<h3>${data.question}</h3>`;
 
   for (const option of data.options) {
-    markup += `<li id="${option._id}">${option.text} - <span>${option.votes.length}</span></li>`;
+    markup += `<li id="${option._id}">${option.text} <span class="u-pull-right">${option.votes.length} Votes</span></li>`;
   }
 
   questionContainer.innerHTML = markup;
+  document.getElementById('totalVotes').innerHTML = totalVotes;
 };
 
 window.onload = () => {
   const urlPath = location.pathname.split('/');
   const pollId = urlPath[1];
+
+  document.querySelector('.results-container').innerHTML += `<a href="/${pollId}" class="button button-primary u-pull-right">Vote</a>`;
 
   if (pollId) {
     const loadRequest = new XMLHttpRequest();
