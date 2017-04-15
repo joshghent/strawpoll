@@ -24,3 +24,7 @@ input[type=text]:focus {
 .header {
   display: inline-block;
 }
+
+#questionText {
+  font-size: 20px;
+}

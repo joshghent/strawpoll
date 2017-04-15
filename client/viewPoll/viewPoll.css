@@ -1,3 +1,7 @@
-.questionOptions {
+#question {
   list-style-type: none;
+}
+
+.header {
+  display: inline-block;
 }

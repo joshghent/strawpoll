@@ -1,7 +1,7 @@
 const render = (data) => {
   const questionContainer = document.getElementById('question');
   let markup = '';
-  markup += `<h1>${data.question}</h1>`;
+  markup += `<h3>${data.question}</h3>`;
 
   for (const option of data.options) {
     markup += `<li><input type="checkbox" value="${option._id}" /> ${option.text}</li>`;

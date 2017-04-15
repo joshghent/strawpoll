@@ -8,10 +8,19 @@
         <link href="/viewPoll/viewPoll.css" rel="stylesheet">
     </head>
     <body>
+        <div class="row">
+            <h1 class="header">🗳 Strawpoll</h1>
+            <a href="/" class="button button-primary u-pull-right" style="margin-top: 15px;">Create a Poll</a>
+        </div>
+
         <div class="container">
-            <ul id="question">
-            </ul>
-            <input id="submitVote" class="button-primary" type="submit" value="Vote!" />
+            <div class="row">
+                <div class="offset-by-three column">
+                    <ul id="question">
+                    </ul>
+                    <input id="submitVote" class="button-primary" type="submit" value="Vote!" />
+                </div>
+            </div>
         </div>
     </body>
     <script type="text/javascript" language="Javascript" src="/viewPoll/viewPoll.js"></script>
