@@ -6,10 +6,10 @@ const render = (data) => {
     return a + b.votes.length;
   }, 0);
 
-  markup += `<h1>${data.question} - Total Votes: ${totalVotes}</h1>`;
+  markup += `<h1>${data.question} - Total Votes: <span id="totalVotes">${totalVotes}<span></h1>`;
 
   for (const option of data.options) {
-    markup += `<li>${option.text} - ${option.votes.length}</li>`;
+    markup += `<li id="${option._id}">${option.text} - <span>${option.votes.length}</span></li>`;
   }
 
   questionContainer.innerHTML = markup;
@@ -36,6 +36,7 @@ window.onload = () => {
 
 const socket = io();
 
-socket.on('vote', (args) => {
-  console.log(args);
+socket.on('vote', (newVote) => {
+  document.querySelector(`[id="${newVote.id}"] span`).innerHTML = newVote.votes;
+  document.getElementById('totalVotes').innerHTML = newVote.totalVotes;
 });

@@ -93,6 +93,9 @@ app.put(/^\/poll\/\w+$/, (req, res) => {
       });
 
       const numberOfVotes = selectedOption.votes.length;
+      const totalVotes = record.options.reduce((a, b) => { 
+        return a + b.votes.length;
+      }, 0);
 
       record.save((_err, _res) => {
         if (_err) {
@@ -102,6 +105,7 @@ app.put(/^\/poll\/\w+$/, (req, res) => {
           sio.emit('vote', {
             id: req.body.optionId,
             votes: numberOfVotes,
+            totalVotes: totalVotes,
           });
           res.json({ message: 'Voted successfully' });
         }
