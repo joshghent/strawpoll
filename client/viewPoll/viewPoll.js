@@ -33,11 +33,12 @@ window.onload = () => {
 
 document.getElementById('newVote').addEventListener('submit', (e) => {
   e.preventDefault();
-  const userVote = document.querySelector('#question input:checked').value;
+  let userVote = document.querySelector('#question input:checked');
   const urlPath = location.pathname.split('/');
   const pollId = urlPath[urlPath.length - 1];
 
   if (userVote) {
+    userVote = userVote.value;
     const voteRequest = new XMLHttpRequest();
     voteRequest.open('PUT', `/poll/${pollId}`, true);
     voteRequest.setRequestHeader('Content-type', 'application/json');
@@ -48,5 +49,8 @@ document.getElementById('newVote').addEventListener('submit', (e) => {
         window.location.href += '/results';
       }
     };
+  } else {
+    document.querySelector('.errorMessage').style.display = 'inline-block';
+    document.querySelector('.errorMessage').innerHTML = 'Please select an option to vote for!';
   }
 });

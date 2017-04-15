@@ -5,12 +5,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+        <link href="/global/global.css" rel="stylesheet">
         <link href="/viewPoll/viewPoll.css" rel="stylesheet">
     </head>
     <body>
         <div class="row">
             <h1 class="header"><a href="/">🗳 Strawpoll</a></h1>
-            <a href="/" class="button button-primary u-pull-right" style="margin-top: 10px;">Create a Poll</a>
+            <a href="/" class="button button-primary u-pull-right button-create-poll" style="margin-top: 10px;"><span>Create a Poll<span></a>
         </div>
         
         <div class="container">
@@ -20,8 +21,9 @@
                         <form id="newVote">
                             <ul id="question">
                             </ul>
-                            <div class="row button-container">
-                                <input id="submitVote" class="button-primary" type="submit" value="Vote!" />
+                            <div class="button-container">
+                                <input id="submitVote" class="button-primary u-pull-left" type="submit" value="Vote!" />
+                                <div class="errorMessage alert alert-error" style="display: none; margin-left: 15px;"></div>
                             </div>
                         </form>
                     </div>

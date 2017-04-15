@@ -2,11 +2,12 @@
   list-style-type: none;
 }
 
-.header {
-  display: inline-block;
+@media only screen and (max-width: 500px) {
+    .button-create-poll::after {
+      content: ' + ';
+    }
+    .button-create-poll span {
+      display: none;
+    }
 }
 
-.header a {
-  text-decoration: none;
-  color: #000;
-}
