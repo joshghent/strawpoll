@@ -15,7 +15,10 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bugsnag = require('bugsnag');
 const shortid = require('shortid');
+const io = require('socket.io').listen(server);
 const schema = require('./schema.js').pollSchema;
+
+app.set('socketio', io);
 
 bugsnag.register(process.env.BUGSNAG_API_KEY);
 
@@ -28,6 +31,10 @@ app.get('/', (req, res) => {
 
 app.get(/^\/[A-Za-z0-9]+$/, (req, res) => {
   res.sendFile(path.join(__dirname, '/client/viewPoll/viewPoll.html'));
+});
+
+app.get(/^\/[A-Za-z0-9]+\/results$/, (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/results/results.html'));
 });
 
 const db = mongoose.connect(String(process.env.MONGOHQ_URL));
@@ -85,15 +92,39 @@ app.put(/^\/poll\/\w+$/, (req, res) => {
         ip: ipAddress,
       });
 
+      const numberOfVotes = selectedOption.votes.length;
+
       record.save((_err, _res) => {
         if (_err) {
           bugsnag.notify(new Error(`Error whilst saving vote ${requestedPoll} - ${req.body.optionId}`));
         } else {
+          const sio = req.app.get('socketio');
+          sio.emit('vote', {
+            id: req.body.optionId,
+            votes: numberOfVotes,
+          });
           res.json({ message: 'Voted successfully' });
         }
       });
     }
   });
+});
+
+app.get(/^\/poll\/[A-Za-z0-9]+\/results$/, (req, res) => {
+  const requestedPoll = req.url.split('/')[2];
+
+  if (requestedPoll) {
+    // Find the poll at the requested url in the database
+    Poll.findOne({ id: requestedPoll }, (err, data) => {
+      // If we find the poll then post back the json data for it
+      if (data) {
+        res.json(data);
+      // Otherwise we output that we couldn't find a poll
+      } else {
+        res.sendFile(path.join(__dirname, 'client/404.html'));
+      }
+    });
+  }
 });
 
 app.get('*', (req, res) => {
