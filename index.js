@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/createPoll/createPoll.html'));
 });
 
-app.get(/^\/[A-Za-z0-9]+$/, (req, res) => {
+app.get(/^\/[A-Za-z0-9]+\/?$/, (req, res) => {
   res.sendFile(path.join(__dirname, '/client/viewPoll/viewPoll.html'));
 });
 

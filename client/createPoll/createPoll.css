@@ -1,0 +1,26 @@
+input[type=text] {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    width: 50%;
+}
+
+input[type=text]:focus {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid #33C3F0;
+    border-radius: 0;
+    width: 50%;
+}
+
+#savePoll {
+  width: 50%;
+  margin-top: 20px;
+}
+
+.header {
+  display: inline-block;
+}

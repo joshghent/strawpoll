@@ -42,7 +42,7 @@ document.getElementById('submitVote').addEventListener('click', () => {
 
     voteRequest.onload = () => {
       if (voteRequest.status >= 200 && voteRequest.status < 400) {
-        window.location.replace(window.location.href + '/results');
+        window.location.href += '/results';
       }
     };
   }
