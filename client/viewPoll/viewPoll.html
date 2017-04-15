@@ -9,17 +9,21 @@
     </head>
     <body>
         <div class="row">
-            <h1 class="header">🗳 Strawpoll</h1>
+            <h1 class="header"><a href="/">🗳 Strawpoll</a></h1>
             <a href="/" class="button button-primary u-pull-right" style="margin-top: 10px;">Create a Poll</a>
         </div>
-
+        
         <div class="container">
             <div class="row">
-                <div class="eleven columns">
+                <div class="nine columns">
                     <div class="offset-by-three columns">
-                        <ul id="question">
-                        </ul>
-                        <input id="submitVote" class="button-primary" type="submit" value="Vote!" />
+                        <form id="newVote">
+                            <ul id="question">
+                            </ul>
+                            <div class="row button-container">
+                                <input id="submitVote" class="button-primary" type="submit" value="Vote!" />
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -5,3 +5,12 @@
 #question {
   list-style-type: none;
 }
+
+.header {
+  display: inline-block;
+}
+
+.header a {
+  text-decoration: none;
+  color: #000;
+}

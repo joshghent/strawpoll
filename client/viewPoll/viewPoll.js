@@ -14,6 +14,8 @@ window.onload = () => {
   const urlPath = location.pathname.split('/');
   const pollId = urlPath[urlPath.length - 1];
 
+  document.querySelector('.button-container').innerHTML += `<a href="/${pollId}/results" class="button button-primary u-pull-right">Results</a>`;
+
   if (pollId) {
     const loadRequest = new XMLHttpRequest();
     loadRequest.open('GET', `/poll/${pollId}`, true);
@@ -29,7 +31,8 @@ window.onload = () => {
   }
 };
 
-document.getElementById('submitVote').addEventListener('click', () => {
+document.getElementById('newVote').addEventListener('submit', (e) => {
+  e.preventDefault();
   const userVote = document.querySelector('#question input:checked').value;
   const urlPath = location.pathname.split('/');
   const pollId = urlPath[urlPath.length - 1];
