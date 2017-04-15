@@ -1,11 +1,13 @@
 const render = (data) => {
   const questionContainer = document.getElementById('question');
-  const optionsMarkup = `<ul class="questionOptions">
-                          <li><input type="checkbox" /> ${data.optionOne}</li>
-                          <li><input type="checkbox" /> ${data.optionTwo}</li>
-                          <li><input type="checkbox" /> ${data.optionThree}</li>
-                        </ul>`;
-  questionContainer.innerHTML = optionsMarkup;
+  let markup = '';
+  markup += `<h1>${data.question}</h1>`;
+
+  for (const option of data.options) {
+    markup += `<li><input type="checkbox" value="${option._id}" /> ${option.text}</li>`;
+  }
+
+  questionContainer.innerHTML = markup;
 };
 
 window.onload = () => {
@@ -26,3 +28,22 @@ window.onload = () => {
     };
   }
 };
+
+document.getElementById('submitVote').addEventListener('click', () => {
+  const userVote = document.querySelector('#question input:checked').value;
+  const urlPath = location.pathname.split('/');
+  const pollId = urlPath[urlPath.length - 1];
+
+  if (userVote) {
+    const voteRequest = new XMLHttpRequest();
+    voteRequest.open('PUT', `/poll/${pollId}`, true);
+    voteRequest.setRequestHeader('Content-type', 'application/json');
+    voteRequest.send(JSON.stringify({optionId: userVote }));
+
+    voteRequest.onload = () => {
+      if (voteRequest.status >= 200 && voteRequest.status < 400) {
+        window.location.replace(window.location.href + '/results');
+      }
+    };
+  }
+});

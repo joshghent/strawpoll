@@ -15,7 +15,7 @@
       savePollRequest.onload = () => {
         if (savePollRequest.status >= 200 && savePollRequest.status < 400) {
           res = JSON.parse(savePollRequest.response);
-          window.location.replace(window.location.href + '/poll/' + res.id);
+          window.location.replace(window.location.href + res.id);
         }
       };
 

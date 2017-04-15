@@ -42,7 +42,6 @@ app.get(/^\/poll\/\w+$/, (req, res) => {
       // If we find the poll then post back the json data for it
       if (data) {
         res.json(data);
-
       // Otherwise we output that we couldn't find a poll
       } else {
         res.sendFile(path.join(__dirname, 'client/404.html'));
@@ -71,6 +70,32 @@ app.post('/save', (req, saveRes) => {
   });
 });
 
+// Route to vote
+app.put(/^\/poll\/\w+$/, (req, res) => {
+  const requestedPoll = req.url.split('/').pop();
+  const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+  Poll.findOne({ id: requestedPoll }, (err, record) => {
+    if (err) {
+      bugsnag.notify(new Error(`Error whilst retrieving ${requestedPoll} - ${req.body.optionId}`));
+    } else {
+      const selectedOption = record.options.id(req.body.optionId);
+
+      selectedOption.votes.push({
+        ip: ipAddress,
+      });
+
+      record.save((_err, _res) => {
+        if (_err) {
+          bugsnag.notify(new Error(`Error whilst saving vote ${requestedPoll} - ${req.body.optionId}`));
+        } else {
+          res.json({ message: 'Voted successfully' });
+        }
+      });
+    }
+  });
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/404.html'));
 });
@@ -78,8 +103,4 @@ app.get('*', (req, res) => {
 server.listen(port, () => {
   console.log(`Listening on: ${port}`);
 });
-
-const io = require('socket.io').listen(server);
-
-io.sockets.on('connection', routes.vote);
 
