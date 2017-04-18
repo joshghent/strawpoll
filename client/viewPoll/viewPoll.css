@@ -3,11 +3,19 @@
 }
 
 @media only screen and (max-width: 500px) {
-    .button-create-poll::after {
-      content: ' + ';
+    .errorMessage {
+      width: 100%;
+      margin-top: 10px;
     }
-    .button-create-poll span {
-      display: none;
+    .hundred-percent {
+      width: 100%;
     }
 }
 
+#question li {
+  font-size: 17px;
+}
+
+.button-container {
+  margin-top: 20px;
+}

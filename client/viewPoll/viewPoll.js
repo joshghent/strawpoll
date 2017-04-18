@@ -1,7 +1,7 @@
 const render = (data) => {
   const questionContainer = document.getElementById('question');
   let markup = '';
-  markup += `<h3>${data.question}</h3>`;
+  markup += `<h2>${data.question}</h2>`;
 
   for (const option of data.options) {
     markup += `<li><input type="checkbox" value="${option._id}" /> ${option.text}</li>`;
@@ -14,7 +14,7 @@ window.onload = () => {
   const urlPath = location.pathname.split('/');
   const pollId = urlPath[urlPath.length - 1];
 
-  document.querySelector('.button-container').innerHTML += `<a href="/${pollId}/results" class="button button-primary u-pull-right">Results</a>`;
+  document.querySelector('.results-button-container').innerHTML = `<a href="/${pollId}/results" class="btn btn-primary pull-right hundred-percent">Results</a>`;
 
   if (pollId) {
     const loadRequest = new XMLHttpRequest();
