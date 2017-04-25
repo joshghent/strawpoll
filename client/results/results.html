@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Strawpoll Results</title>
+    <title>Results | Strawpoll</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link href="/global/global.css" rel="stylesheet">
     <link href="/results/results.css" rel="stylesheet">
   </head>
   <body>
-    <div class="row">
-        <h1 class="header"><a href="/">🗳 Strawpoll</a></h1>
-        <a href="/" class="button button-primary u-pull-right button-create-poll" style="margin-top: 10px;"><span>Create a Poll<span></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-lg-12">
+                <h1 class="header"><a href="/">🗳 Strawpoll</a></h1>
+                <a href="/" class="btn btn-primary pull-right button-create-poll" style="margin-top: 20px;"><span>Create a Poll<span></a>
+            </div>
+        </div>
     </div>
 
     <div class="container">
       <div class="row">
-        <div class="nine columns">
-          <div class="offset-by-three columns">
-            <ul id="question">
-            </ul>
-            <div class="row results-container">
-              <b><span id="totalVotes"></span> Votes</b>
+        <div class="col-md-9 col-md-offset-3 col-lg-6 col-lg-offset-3 col-xs-12">
+          <ul id="question">
+          </ul>
+          <div class="row results-container">
+            <div class="col-md-6 col-lg-6 col-xs-6">
+              <b class="vote-number"><span id="totalVotes"></span> Votes</b>
             </div>
           </div>
         </div>

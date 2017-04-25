@@ -6,10 +6,10 @@ const render = (data) => {
     return a + b.votes.length;
   }, 0);
 
-  markup += `<h3>${data.question}</h3>`;
+  markup += `<h2>${data.question}</h2>`;
 
   for (const option of data.options) {
-    markup += `<li id="${option._id}">${option.text} <span class="u-pull-right">${option.votes.length} Votes</span></li>`;
+    markup += `<li id="${option._id}">${option.text} <span class="pull-right">${option.votes.length} Votes</span></li>`;
   }
 
   questionContainer.innerHTML = markup;
@@ -20,7 +20,7 @@ window.onload = () => {
   const urlPath = location.pathname.split('/');
   const pollId = urlPath[1];
 
-  document.querySelector('.results-container').innerHTML += `<a href="/${pollId}" class="button button-primary u-pull-right">Vote</a>`;
+  document.querySelector('.results-container').innerHTML += `<div class="col-lg-6 col-md-6 col-xs-6 pull-right"><a href="/${pollId}" class="btn btn-primary pull-right">Vote</a></div>`;
 
   if (pollId) {
     const loadRequest = new XMLHttpRequest();
