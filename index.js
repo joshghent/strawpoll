@@ -1,6 +1,6 @@
-const port = process.env.PORT || 5432;
+require('dotenv').config({silent: true });
 
-require('dotenv').config();
+const port = Number(process.env.PORT || 5432);
 
 const express = require('express');
 const bodyparser = require('body-parser');
@@ -37,7 +37,7 @@ app.get(/^\/[A-Za-z0-9]+\/results$/, (req, res) => {
   res.sendFile(path.join(__dirname, '/client/results/results.html'));
 });
 
-const db = mongoose.connect(String(process.env.MONGOHQ_URL));
+const db = mongoose.connect(String(process.env.MONGODB_URI));
 const Poll = db.model('strawpolls', schema);
 
 app.get(/^\/poll\/\w+$/, (req, res) => {
