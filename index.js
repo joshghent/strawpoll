@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({silent: true });
 
 const port = Number(process.env.PORT || 5432);
 
