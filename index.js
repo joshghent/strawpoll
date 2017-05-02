@@ -58,6 +58,7 @@ app.get(/^\/poll\/\w+$/, (req, res) => {
 });
 
 app.post('/save', (req, saveRes) => {
+  shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&@');
   const pollId = shortid.generate();
 
   const pollObj = {
@@ -66,17 +67,17 @@ app.post('/save', (req, saveRes) => {
     options: req.body.options,
   };
 
-  pollObj.options = pollObj.options.filter((e) => { return e === 0 || e; });
+  pollObj.options = pollObj.options.filter((e) => { return e.text === 0 || e.text; });
 
-  if (pollObj.question === '') {
+  if (!pollObj.question) {
     saveRes.json({
-      'status' : 'error',
-      'results' : 'Please enter a question to ask.',
+      status: 'error',
+      results: 'Please enter a question to ask.',
     });
-  } else if (pollObj.length < 2) {
+  } else if (pollObj.options.length < 2) {
     saveRes.json({
-      'status' : 'error',
-      'results' : 'Please put at least 2 options.',
+      status: 'error',
+      results: 'Please provide at least 2 options.',
     });
   } else {
     const poll = new Poll(pollObj);
@@ -85,7 +86,6 @@ app.post('/save', (req, saveRes) => {
       if (err) {
         bugsnag.notify(new Error(`Error whilst saving ${pollId} - ${saveRes}`));
       } else {
-        res.status = 'success';
         saveRes.json(res);
       }
     });

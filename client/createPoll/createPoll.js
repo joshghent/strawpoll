@@ -14,7 +14,7 @@
     savePollRequest.onload = () => {
       if (savePollRequest.status >= 200 && savePollRequest.status < 400) {
         res = JSON.parse(savePollRequest.response);
-        if (res.status === 'success') {
+        if (res.status === 'success' || res.status === undefined) {
           window.location.href += res.id;
         } else if (res.status === 'error') {
           document.querySelector('.errorMessage').style.display = 'inline-block';

@@ -1,13 +1,32 @@
+const optionSelected = (event) => {
+  const elemID = event.target.id;
+
+  const optionsCheckboxes = document.querySelectorAll('.options-checkbox');
+
+  for (let i = 0; i < optionsCheckboxes.length; i += 1) {
+    optionsCheckboxes[i].checked = false;
+  }
+
+  document.getElementById(elemID).checked = true;
+};
+
 const render = (data) => {
   const questionContainer = document.getElementById('question');
   let markup = '';
   markup += `<h2>${data.question}</h2>`;
 
+  const optionsList = [];
+
   for (const option of data.options) {
-    markup += `<li><input type="checkbox" value="${option._id}" /> ${option.text}</li>`;
+    markup += `<li><input type="checkbox" value="${option._id}" class="options-checkbox" id="${option._id}"/> ${option.text}</li>`;
+    optionsList.push(option._id);
   }
 
   questionContainer.innerHTML = markup;
+
+  for (const id of optionsList) {
+    document.getElementById(id).addEventListener('click', optionSelected);
+  }
 };
 
 window.onload = () => {
