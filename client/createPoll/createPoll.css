@@ -19,6 +19,10 @@ input[type=text]:focus {
     box-shadow: none;
 }
 
+.create-poll-btn-container {
+  padding-left: 0px;
+}
+
 #savePoll {
   margin-top: 20px;
 }
@@ -37,6 +41,10 @@ input[type=text]:focus {
 }
 
 @media only screen and (max-width: 500px) {
+    .create-poll-btn-container {
+      padding-left: 15px;
+    }
+
     #questionText {
       margin-top: 10px;
     }
@@ -50,6 +58,15 @@ input[type=text]:focus {
     }
 
     input[type=text]:focus {
+      width: 100%;
+    }
+
+    .errorMessage {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .hundred-percent {
       width: 100%;
     }
 }

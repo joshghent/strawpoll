@@ -85,6 +85,7 @@ app.post('/save', (req, saveRes) => {
       if (err) {
         bugsnag.notify(new Error(`Error whilst saving ${pollId} - ${saveRes}`));
       } else {
+        res.status = 'success';
         saveRes.json(res);
       }
     });

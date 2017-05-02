@@ -4,7 +4,7 @@
         <title>Create | Strawpoll</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
         <link href="/global/global.css" rel="stylesheet">
         <link href="/createPoll/createPoll.css" rel="stylesheet">
     </head>
@@ -26,7 +26,10 @@
                             <input id="questionOne" class="form-control" type="text" placeholder="Enter the first option" />
                             <input id="questionTwo" class="form-control" type="text" placeholder="Enter the second option" />
                             <input id="questionThree" class="form-control" type="text" placeholder="Enter the third option" />
-                            <input id="savePoll" class="btn btn-primary" type="submit" value="Create Poll" />
+                        <div class="col-md-9 col-lg-9 col-xs-12 button-container">
+                            <div class="col-lg-2 col-md-2 col-xs-12 create-poll-btn-container"><input id="savePoll" class="btn btn-primary" type="submit" value="Create Poll" /></div>
+                            <div class="col-lg-8 col-md-8 col-xs-12"><div class="errorMessage alert alert-danger" role="alert" style="display: none; width: 100%; margin-top: 20px;"></div></div>
+                        </div>
                     </div>
                 </div>
             </form>
