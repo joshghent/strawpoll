@@ -66,15 +66,29 @@ app.post('/save', (req, saveRes) => {
     options: req.body.options,
   };
 
-  const poll = new Poll(pollObj);
+  pollObj.options = pollObj.options.filter((e) => { return e === 0 || e; });
 
-  poll.save((err, res) => {
-    if (err) {
-      bugsnag.notify(new Error(`Error whilst saving ${pollId} - ${saveRes}`));
-    } else {
-      saveRes.json(res);
-    }
-  });
+  if (pollObj.question === '') {
+    saveRes.json({
+      'status' : 'error',
+      'results' : 'Please enter a question to ask.',
+    });
+  } else if (pollObj.length < 2) {
+    saveRes.json({
+      'status' : 'error',
+      'results' : 'Please put at least 2 options.',
+    });
+  } else {
+    const poll = new Poll(pollObj);
+
+    poll.save((err, res) => {
+      if (err) {
+        bugsnag.notify(new Error(`Error whilst saving ${pollId} - ${saveRes}`));
+      } else {
+        saveRes.json(res);
+      }
+    });
+  }
 });
 
 // Route to vote
