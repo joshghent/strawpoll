@@ -1,0 +1,21 @@
+#question {
+  list-style-type: none;
+}
+
+@media only screen and (max-width: 500px) {
+    .errorMessage {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .hundred-percent {
+      width: 100%;
+    }
+}
+
+#question li {
+  font-size: 17px;
+}
+
+.button-container {
+  margin-top: 20px;
+}

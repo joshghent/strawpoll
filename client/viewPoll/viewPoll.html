@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>View Poll</title>
+        <title>Vote | Strawpoll</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link href="/global/global.css" rel="stylesheet">
+        <link href="/viewPoll/viewPoll.css" rel="stylesheet">
     </head>
     <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12 col-lg-12">
+                    <h1 class="header"><a href="/">🗳 Strawpoll</a></h1>
+                    <a href="/" class="btn btn-primary pull-right button-create-poll" style="margin-top: 20px;"><span>Create a Poll<span></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3 col-xs-12">
+                    <form id="newVote">
+                        <ul id="question">
+                        </ul>
+                        <div class="col-md-9 col-lg-9 col-xs-12 button-container">
+                            <div class="col-lg-6 col-md-6 col-xs-6"><input id="submitVote" class="btn btn-primary pull-left hundred-percent" type="submit" value="Vote!" /></div>
+                            <div class="col-lg-6 col-md-6 col-xs-6 results-button-container"></div>
+                            <div class="col-lg-12 col-md-12 col-xs-12"><div class="errorMessage alert alert-danger" role="alert" style="display: none; width: 100%; margin-top: 10px;"></div></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
-    <script type="text/javascript" language="Javascript" src="viewPoll.js"></script>
+    <script type="text/javascript" language="Javascript" src="/viewPoll/viewPoll.js"></script>
 </html>

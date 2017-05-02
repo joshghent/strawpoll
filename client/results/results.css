@@ -1,0 +1,31 @@
+#totalVotes {
+  font-size: 15px;
+}
+
+#question {
+  list-style-type: none;
+}
+
+.header {
+  display: inline-block;
+}
+
+.header a {
+  text-decoration: none;
+  color: #000;
+}
+
+@media only screen and (max-width: 500px) {
+    .vote-number {
+      margin-left: 40px;
+      font-size: 15px;
+    }
+
+    #totalVotes {
+      font-size: 25px;
+    }
+}
+
+#question li {
+  font-size: 17px;
+}

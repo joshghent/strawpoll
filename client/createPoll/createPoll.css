@@ -1,0 +1,72 @@
+input[type=text] {
+    border: 0;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    width: 60%;
+    box-shadow: none;
+    margin-bottom: 10px;
+}
+
+input[type=text]:focus {
+    border: 0;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid #33C3F0;
+    border-radius: 0;
+    width: 60%;
+    box-shadow: none;
+}
+
+.create-poll-btn-container {
+  padding-left: 0px;
+}
+
+#savePoll {
+  margin-top: 20px;
+}
+
+.header {
+  display: inline-block;
+}
+
+.header a {
+  text-decoration: none;
+  color: #000;
+}
+
+#questionText {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+    .create-poll-btn-container {
+      padding-left: 15px;
+    }
+
+    #questionText {
+      margin-top: 10px;
+    }
+
+    #savePoll {
+      width: 100%;
+    }
+
+    input[type=text] {
+      width: 100%;
+    }
+
+    input[type=text]:focus {
+      width: 100%;
+    }
+
+    .errorMessage {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .hundred-percent {
+      width: 100%;
+    }
+}
