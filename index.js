@@ -1,6 +1,6 @@
-const port = process.env.PORT || 5432;
-
 require('dotenv').config();
+
+const port = Number(process.env.PORT || 5432);
 
 const express = require('express');
 const bodyparser = require('body-parser');
