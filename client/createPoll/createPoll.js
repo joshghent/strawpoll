@@ -2,14 +2,16 @@
   if (location.hostname != 'localhost' && location.hostname != '127.0.0.1' && location.protocol != 'https:') {
     location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
   }
-  
+
   const savePollButton = document.getElementById('savePoll');
 
   savePollButton.addEventListener('click', (event) => {
     const questionText = document.getElementById('questionText').value;
     const optionOne = document.getElementById('questionOne').value;
     const optionTwo = document.getElementById('questionTwo').value;
-    const optionThree = document.getElementById('questionThree').value;
+		const optionThree = document.getElementById('questionThree').value;
+		const preventMulipleIPVotes = document.getElementById('preventDuplicateVotes').value;
+
     const savePollRequest = new XMLHttpRequest();
     let res;
 
@@ -28,7 +30,8 @@
     };
 
     savePollRequest.send(JSON.stringify({
-      question: questionText,
+			question: questionText,
+			preventMultipleIPVotes: preventMulipleIPVotes,
       options: [
         { text: optionOne },
         { text: optionTwo },

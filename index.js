@@ -64,7 +64,8 @@ app.post('/save', (req, saveRes) => {
   const pollObj = {
     id: pollId,
     question: req.body.question,
-    options: req.body.options,
+		options: req.body.options,
+		preventMultipleIPVotes: req.body.preventMultipleIPVotes,
   };
 
   pollObj.options = pollObj.options.filter((e) => { return e.text === 0 || e.text; });
