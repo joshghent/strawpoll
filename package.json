@@ -13,20 +13,20 @@
   "author": "Josh Ghent",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "1.15.2",
-    "dotenv": "2.0.0",
-    "bugsnag": "1.10.0",
-    "express": "4.14.0",
-    "mongodb": "2.2.11",
-    "mongoose": "4.6.8",
-    "shortid": "2.2.6",
-    "socket.io": "1.5.1"
+    "body-parser": "1.18.3",
+    "dotenv": "6.0.0",
+    "bugsnag": "2.4.3",
+    "express": "4.16.3",
+    "mongodb": "3.1.1",
+    "mongoose": "5.2.3",
+    "shortid": "2.2.12",
+    "socket.io": "2.1.1"
   },
   "devDependencies": {
-    "eslint": "3.10.2",
-    "eslint-config-airbnb": "13.0.0",
-    "eslint-plugin-import": "2.2.0",
-    "eslint-plugin-jsx-a11y": "3.0.1",
-    "eslint-plugin-react": "6.7.1"
+    "eslint": "5.1.0",
+    "eslint-config-airbnb": "17.0.0",
+    "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-jsx-a11y": "6.1.1",
+    "eslint-plugin-react": "7.10.0"
   }
 }
