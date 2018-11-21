@@ -58,7 +58,7 @@ app.get(/^\/poll\/\w+$/, (req, res) => {
 });
 
 app.post('/save', (req, saveRes) => {
-  shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&@');
+  shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&');
   const pollId = shortid.generate();
 
   const pollObj = {
@@ -108,7 +108,7 @@ app.put(/^\/poll\/\w+$/, (req, res) => {
       });
 
       const numberOfVotes = selectedOption.votes.length;
-      const totalVotes = record.options.reduce((a, b) => { 
+      const totalVotes = record.options.reduce((a, b) => {
         return a + b.votes.length;
       }, 0);
 
