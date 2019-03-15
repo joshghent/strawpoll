@@ -58,7 +58,7 @@ app.get(/^\/poll\/\w+$/, (req, res) => {
 });
 
 app.post('/save', (req, saveRes) => {
-  shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&');
+  shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&@');
   const pollId = shortid.generate();
 
   const pollObj = {
