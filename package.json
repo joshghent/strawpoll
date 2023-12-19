@@ -17,8 +17,8 @@
     "dotenv": "2.0.0",
     "bugsnag": "1.10.0",
     "express": "4.15.5",
-    "mongodb": "2.2.11",
-    "mongoose": "4.13.17",
+    "mongodb": "2.2.19",
+    "mongoose": "4.7.7",
     "shortid": "2.2.6",
     "socket.io": "1.5.1"
   },
